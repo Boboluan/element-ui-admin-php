@@ -12,6 +12,6 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'OPTIONS') {
 require __DIR__ . '/../vendor/autoload.php';
 
 $http = (new  App())->http;
-$response = $http->name('api')->run();
+$response = $http->name('admin')->run();
 $response->send();
 $http->end($response);

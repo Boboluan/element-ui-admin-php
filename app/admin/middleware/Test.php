@@ -2,7 +2,7 @@
 
 declare (strict_types=1);
 
-namespace app\api\middleware;
+namespace app\admin\middleware;
 
 use thans\jwt\exception\JWTException;
 use thans\jwt\exception\TokenBlacklistException;

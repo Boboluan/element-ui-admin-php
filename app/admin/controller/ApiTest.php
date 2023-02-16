@@ -1,10 +1,10 @@
 <?php
 
-namespace app\api\controller;
+namespace app\admin\controller;
 
 use app\common\Service\TokenService as token;
 
-class ApiTest extends ApiController
+class ApiTest extends Common
 {
 
     public function query()

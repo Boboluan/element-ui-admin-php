@@ -1,7 +1,7 @@
 <?php
 declare (strict_types = 1);
 
-namespace app\api\middleware;
+namespace app\admin\middleware;
 
 use app\common\Service\TokenService as token;
 

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="__CCSS__/index.css">
+    <script src="__JS__/jquery-3.5.1.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+<div class="container">
+
+    <div class="box">
+
+        <button onclick="submitValue(1)" type="button" class="tab"><a href="javascript:;"></a>屏幕键盘</button>
+
+        <button onclick="submitValue(2)" type="button" class="tab"><a href="javascript:;"></a>DirectX</button>
+
+        <button onclick="submitValue(3)" type="button" class="tab"><a href="javascript:;"></a>写字板</button>
+
+        <button onclick="submitValue(4)" type="button" class="tab"><a href="javascript:;"></a>创建共享</button>
+    </div>
+
+
+
+    <div class="box">
+
+        <button onclick="submitValue(5)" type="button" class="tab"><a href="javascript:;"></a>IP设置</button>
+
+        <button onclick="submitValue(6)" type="button" class="tab"><a href="javascript:;"></a></button>
+
+        <button onclick="submitValue(7)" type="button" class="tab"><a href="javascript:;"></a></button>
+
+        <button onclick="submitValue(8)" type="button" class="tab"><a href="javascript:;"></a></button>
+
+    </div>
+
+    <!--结果区-->
+    <div id="result">
+    </div>
+
+</div>
+
+
+</body>
+<script>
+    function submitValue(cm)
+    {
+        $.ajax({
+            url:"/command/index/query",
+            type:'post',
+            dataType:'json',
+            data:{'command':cm},
+            success:function(res){
+                var resBox = document.getElementById("result");
+                console.log(resBox);
+                if(res!==null){
+                    resBox.innerText = res;
+                }
+            }
+        })
+    }
+</script>
+</html>

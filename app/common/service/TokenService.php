@@ -22,7 +22,7 @@ class TokenService
             "aud" => "",
             "iat" => $time,
             "nbf" => $time,
-            "exp" => $time+120,
+            "exp" => $time+86400,
             "uid" => $uid
         );
         $token = JWT::encode($payload,$key,"HS256");
@@ -75,7 +75,7 @@ class TokenService
 
 
     /*tp内置token*/
-    public function tpToken()
+    public static function tpToken()
     {
         return token('','sha1');
     }

@@ -9,16 +9,9 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'OPTIONS') {
     exit;
 }
 
-//定义模块
-define('BIND_MODULE','api');
-
 require __DIR__ . '/../vendor/autoload.php';
 
-// 执行HTTP应用并响应
-$http = (new App())->http;
-
-$response = $http->run();
-
+$http = (new  App())->http;
+$response = $http->name('api')->run();
 $response->send();
-
 $http->end($response);

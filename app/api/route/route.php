@@ -12,15 +12,15 @@ namespace app\api\route;
 
 use think\facade\Route;
 
-//路由访问 http://192.168.60.1:8060/index.php/api/apis/login
+//路由访问 http://192.168.60.1:8060/api.php/apis/login
 //api路由 测试用例
 Route::group('apis',function ()
 {
     //访问走中间件测试
     Route::any('login', 'api/login/Login');
 
-//})->middleware(\app\api\middleware\Sentry::class);
-})->middleware(\app\api\middleware\Test::class);
+})->middleware(\app\api\middleware\Sentry::class);
+//})->middleware(\app\api\middleware\Test::class);
 
 
 

@@ -10,5 +10,6 @@ class Sentry
 //        die();
         $requestData = $request->request();
         $response = $next($request);
+        return $response;
     }
 }

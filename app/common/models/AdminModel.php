@@ -8,9 +8,9 @@ class AdminModel extends Model
     protected $name = 'admin';
 
 
-    public function get($where = [],$field = ['*'])
+    public function get($where = [],$without = ['password'],$field = [],$query = 'find')
     {
-       return $this->where($where)->field($field)->find();
+       return $this->where($where)->field($field)->$query();
     }
 
 }

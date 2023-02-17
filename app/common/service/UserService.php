@@ -17,8 +17,19 @@ class UserService
 
     public  function UserLoginService($params)
     {
-        $User = $this->User->get(['username'=>$params['username']]);
-        dump($User);
+      if(!$this->checkUser($params)){
+
+      }
+    }
+
+
+    public function  checkUser($params)
+    {
+        $User = $this->User->get(['username'=>$params['username']],'password','','find')->toArray();
+//        dump($User);
+        if(empty($User)){
+
+        }
     }
 
 }

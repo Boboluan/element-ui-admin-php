@@ -9,16 +9,11 @@ use think\facade\Route;
 //api路由 测试用例
 Route::group('user',function ()
 {
-    //访问走中间件测试
-    Route::any('login', 'admin/user/userlogin');
-
-})->middleware(\app\admin\middleware\Sentry::class);
-//})->middleware(\app\api\middleware\Test::class);
+    Route::any('info', 'admin/user/UserInfo');
+});
 
 
 
-
-//不需要中间件
 Route::group('login',function ()
 {
     //登录

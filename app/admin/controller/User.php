@@ -20,7 +20,9 @@ class User extends Common implements \app\apiInterfaceFile\User
 
     public function UserInfo()
     {
-        // TODO: Implement UserInfo() method.
+//        dump($this->userService->UserInfoService(1));
+//        dump(11);die();
+        return renderData($this->userService->UserInfoService(1));
     }
 
 

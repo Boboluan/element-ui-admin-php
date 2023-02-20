@@ -24,7 +24,6 @@ class UserService
     public function  checkUser($params)
     {
         $User = $this->User->get(['username'=>$params['username']],'password','','find');
-        !empty($User) ? $User->toArray():$User=[];
         if(empty($User)){
             return renderError('该用户不存在');
         }else{
@@ -37,5 +36,14 @@ class UserService
         $Return['userInfo'] = $User;
         return renderSuccess($Return);
     }
+
+
+
+    public function UserInfoService($user_id)
+    {
+        $User = $this->User->get(['id'=>$user_id],'password','','find');
+        return $User;
+    }
+
 
 }

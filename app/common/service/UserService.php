@@ -17,21 +17,19 @@ class UserService
 
     public  function UserLoginService($params)
     {
-//        if(!$result = $this->checkUser($params)){
-//            return $result;
-//        }
-        return $this->checkUser($params);
+        return  $this->checkUser($params);
     }
 
 
     public function  checkUser($params)
     {
-        $User = $this->User->get(['username'=>$params['username']],'password','','find')->toArray();
+        $User = $this->User->get(['username'=>$params['username']],'password','','find');
+        !empty($User) ? $User->toArray():$User=[];
         if(empty($User)){
-            return DataReturn(config('status.user_not_exist'));
+            return DataReturn(config('status.USER_STATUS.user_not_exist'));
         }else{
             if(!password_verify($params['password'],$User['password'])){
-                return DataReturn(config('status.password_wrong'));
+                return DataReturn(config('status.USER_STATUS.password_wrong'));
             }
         }
         $Return['token'] = '1212121212';

@@ -9,6 +9,7 @@ class User extends Common implements \app\apiInterfaceFile\User
 
     protected $userService;
 
+
     public function __construct(App $app)
     {
         parent::__construct($app);
@@ -16,16 +17,16 @@ class User extends Common implements \app\apiInterfaceFile\User
         $this->userService = new \app\common\service\UserService();
     }
 
+
     public function UserInfo()
     {
         // TODO: Implement UserInfo() method.
     }
 
+
     public function UserLogin()
     {
-        // TODO: Implement UserLogin() method.
-        $res = $this->userService->UserLoginService($this->request->post());
-        dump($res);die();
+        return renderData($this->userService->UserLoginService($this->request->post()));
     }
 
 

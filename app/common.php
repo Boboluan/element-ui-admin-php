@@ -11,6 +11,7 @@ use think\facade\Log;
 use think\facade\Config;
 use think\facade\Request;
 use think\exception\HttpResponseException;
+use think\response\Json;
 
 
 /**
@@ -28,6 +29,18 @@ function DataReturn($msgData = [])
         'data'  =>$msgData['data']
     ];
     return $Return;
+}
+
+
+/**
+ * 返回操作结果
+ * @param string $message
+ * @param array $data
+ * @return Json
+ */
+function renderData($data = [])
+{
+    return json(compact('data'));
 }
 
 

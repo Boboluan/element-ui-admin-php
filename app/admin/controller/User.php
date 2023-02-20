@@ -24,7 +24,8 @@ class User extends Common implements \app\apiInterfaceFile\User
     public function UserLogin()
     {
         // TODO: Implement UserLogin() method.
-        return $this->userService->UserLoginService($this->request->post());
+        $res = $this->userService->UserLoginService($this->request->post());
+        dump($res);die();
     }
 
 

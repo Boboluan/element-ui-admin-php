@@ -46,6 +46,20 @@ class Common extends BaseController
         return $this->renderJson(config('status.error'), $message, $data);
     }
 
+
+    /**
+     * 返回操作结果
+     * @param string $message
+     * @param array $data
+     * @return Json
+     */
+    protected function renderData($data = [])
+    {
+        return json(compact('data'));
+    }
+
+
+
     /**
      * 获取post数据 (数组)
      * @param $key

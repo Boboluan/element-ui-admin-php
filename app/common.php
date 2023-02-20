@@ -10,9 +10,6 @@ use think\facade\Env;
 use think\facade\Log;
 use think\facade\Config;
 use think\facade\Request;
-use app\common\library\helper;
-use cores\exception\BaseException;
-use cores\exception\DebugException;
 use think\exception\HttpResponseException;
 
 
@@ -23,12 +20,12 @@ use think\exception\HttpResponseException;
  * @return array
  * 公共数据返回
  */
-function DataReturn(string $msg, int $code,$data)
+function DataReturn($msgData = [])
 {
     $Return = [
-        'msg' => $msg,
-        'code'=> $code,
-        'data'=>$data
+        'msg'   => $msgData['msg'],
+        'status'=> $msgData['status'],
+        'data'  =>$msgData['data']
     ];
     return $Return;
 }

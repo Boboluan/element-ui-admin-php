@@ -24,11 +24,58 @@ use think\response\Json;
 function DataReturn($msgData = [])
 {
     $Return = [
-        'msg'   => $msgData['msg'],
-        'status'=> $msgData['status'],
-        'data'  =>$msgData['data']
+        'msg'  => $msgData['msg'],
+        'code' => $msgData['code'],
+        'data' =>$msgData['data']
     ];
     return $Return;
+}
+
+
+/**
+ * 返回封装后的 API 数据到客户端
+ * @param int|null $status 状态码
+ * @param string $message
+ * @param array $data
+ * @return Json
+ */
+function renderJson(int $status = null, string $message = '', array $data = []): Json
+{
+    return json(compact('status', 'message', 'data'));
+}
+
+/**
+ * 返回操作成功json
+ * @param array|string $data
+ * @param string $message
+ */
+function renderSuccess($data = [], string $message = 'success')
+{
+    if (is_string($data)) {
+        $message = $data;
+        $data = [];
+    }
+    $returnData = [
+        'message'=>$message,
+        'data'   =>$data,
+        'code'   =>config('status.success'),
+    ];
+    return $returnData;
+}
+
+/**
+ * 返回操作失败json
+ * @param string $message
+ * @param array $data
+ */
+function renderError(string $message = 'error', array $data = [])
+{
+    $returnData = [
+        'message'=>$message,
+        'data'   =>$data,
+        'code'   =>config('status.error'),
+    ];
+    return $returnData;
 }
 
 
@@ -38,11 +85,10 @@ function DataReturn($msgData = [])
  * @param array $data
  * @return Json
  */
-function renderData($data = [])
+function renderData($result)
 {
-    return json(compact('data'));
+    return json($result);
 }
-
 
 
 /**

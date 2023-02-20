@@ -26,15 +26,16 @@ class UserService
         $User = $this->User->get(['username'=>$params['username']],'password','','find');
         !empty($User) ? $User->toArray():$User=[];
         if(empty($User)){
-            return DataReturn(config('status.USER_STATUS.user_not_exist'));
+            return renderError('该用户不存在');
         }else{
-            if(!password_verify($params['password'],$User['password'])){
-                return DataReturn(config('status.USER_STATUS.password_wrong'));
+//            if(!password_verify($params['password'],$User['password'])){
+            if($params['password']!=$User['password']){
+                return renderError('密码错误');
             }
         }
         $Return['token'] = '1212121212';
         $Return['userInfo'] = $User;
-        return $User;
+        return renderSuccess($Return);
     }
 
 }

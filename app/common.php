@@ -112,6 +112,12 @@ function getToken()
     return $token;
 }
 
+//转数组
+function dataToArray($data):array
+{
+    !empty($data) ? $data->toArray():$data = [];
+    return  $data;
+}
 
 
 /**

@@ -11,8 +11,7 @@ class AdminModel extends Model
     public function get($where = [],$without = ['password'],$field = [],$query = 'find')
     {
         $data = $this->where($where)->field($field)->$query();
-        !empty($data) ? $data->toArray():$data = [];
-        return $data;
+        return dataToArray($data);
     }
 
 }

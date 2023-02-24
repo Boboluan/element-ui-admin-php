@@ -15,12 +15,27 @@ class UserService
     }
 
 
+    /**
+     * @param $params
+     * Author : Hyy
+     * Since  : 2023/2/24 10:31
+     * Description : 用户登录
+     * @return array
+     */
     public  function UserLoginService($params)
     {
         return  $this->checkUser($params);
     }
 
 
+
+    /**
+     * @param $params
+     * Author : Hyy
+     * Since  : 2023/2/24 10:29
+     * Description : 检查用户信息
+     * @return array
+     */
     public function  checkUser($params)
     {
         $User = $this->User->get(['username'=>$params['username']],'password','','find');
@@ -38,11 +53,16 @@ class UserService
     }
 
 
-
+    /**
+     * @param $user_id
+     * Author : Hyy
+     * Since  : 2023/2/24 10:30
+     * Description : 查询用户信息
+     * @return array
+     */
     public function UserInfoService($user_id)
     {
-        $User = $this->User->get(['id'=>$user_id],'password','','find');
-        return $User;
+        return $this->User->get(['id'=>$user_id],'password','','find');
     }
 
 

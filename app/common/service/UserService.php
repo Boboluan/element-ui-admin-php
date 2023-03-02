@@ -42,8 +42,8 @@ class UserService
         if(empty($User)){
             return renderError('该用户不存在');
         }else{
-//            if(!password_verify($params['password'],$User['password'])){
-            if($params['password']!=$User['password']){
+            if(!password_verify($params['password'],$User['password'])){
+//         if($params['password']!=$User['password']){
                 return renderError('密码错误');
             }
         }

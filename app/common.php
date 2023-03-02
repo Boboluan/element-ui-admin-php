@@ -113,7 +113,7 @@ function getToken()
 }
 
 //转数组
-function dataToArray($data):array
+function dataToArray($data)
 {
     !empty($data) ? $data->toArray():$data = [];
     return  $data;

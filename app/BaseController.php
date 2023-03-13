@@ -6,6 +6,7 @@ namespace app;
 use think\App;
 use think\exception\ValidateException;
 use think\Validate;
+use think\cache\driver\Redis;
 
 /**
  * 控制器基础类
@@ -36,6 +37,8 @@ abstract class BaseController
      */
     protected $middleware = [];
 
+    protected $redis;
+
     /**
      * 构造方法
      * @access public
@@ -45,7 +48,8 @@ abstract class BaseController
     {
         $this->app     = $app;
         $this->request = $this->app->request;
-
+        //实例化全局redis
+        $this->redis = new Redis();
         // 控制器初始化
         $this->initialize();
     }

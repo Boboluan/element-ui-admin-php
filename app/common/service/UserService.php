@@ -4,13 +4,14 @@ namespace app\common\service;
 
 
 
-class UserService
+class UserService extends BaseService
 {
 
     protected $User;
 
     public function __construct()
     {
+        parent::__construct();
         $this->User = new \app\common\models\AdminModel();
     }
 
@@ -43,11 +44,10 @@ class UserService
             return renderError('该用户不存在');
         }else{
             if(!password_verify($params['password'],$User['password'])){
-//         if($params['password']!=$User['password']){
                 return renderError('密码错误');
             }
         }
-        $Return['token'] = '1212121212';
+        $Return['token'] = TokenService::createToken();
         $Return['userInfo'] = $User;
         return renderSuccess($Return);
     }

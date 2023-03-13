@@ -13,7 +13,7 @@ class TokenService
      * @return string
      * 生成token
      */
-    public static function createToken($uid)
+    public static function createJwtToken($uid)
     {
         $key = config('app')['JwtKey'];
         $time = time();
@@ -25,8 +25,7 @@ class TokenService
             "exp" => $time+86400,
             "uid" => $uid
         );
-        $token = JWT::encode($payload,$key,"HS256");
-        return $token;
+        return JWT::encode($payload,$key,"HS256");
     }
 
 
@@ -68,16 +67,20 @@ class TokenService
             "exp" => $time+3*86400,
             "uid" => $uid
         );
-        $token = JWT::encode($payload,$key,"HS256");
-        return $token;
+        return JWT::encode($payload,$key,"HS256");
     }
 
 
 
-    /*tp内置token*/
-    public static function tpToken()
+    /**
+     * @param string $salt
+     * @return string
+     * 创建生成token
+     */
+    public static function createToken(string $salt='tp6'): string
     {
-        return token('','sha1');
+        $str=md5(uniqid(md5(microtime(true)),true));
+        return sha1($str.$salt);
     }
 
 

@@ -4,6 +4,7 @@ namespace app\common\service;
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use think\cache\driver\Redis;
 
 class TokenService
 {
@@ -13,7 +14,7 @@ class TokenService
      * @return string
      * 生成token
      */
-    public static function createJwtToken($uid)
+    public static function createJwtToken($uid): string
     {
         $key = config('app')['JwtKey'];
         $time = time();
@@ -36,7 +37,7 @@ class TokenService
      * @return
      * 验证token
      */
-    public static function validateToken($token)
+    public static function validateJwtToken($token): array
     {
         $key = config('app')['JwtKey'];
         try {
@@ -55,7 +56,7 @@ class TokenService
      * @return string
      * 生成刷新验证token
      */
-    public static function createrefreshToken($uid)
+    public static function createrefreshToken($uid): string
     {
         $key = config('app')['JwtKey'];
         $time = time();
@@ -83,5 +84,26 @@ class TokenService
         return sha1($str.$salt);
     }
 
+
+    /**
+     * @param $token
+     * @return array|true
+     * 验证token
+     */
+    public static function validateToken($token)
+    {
+        $redis = new Redis();
+        $data = $redis->get("userInfo");
+        if(empty($token)){
+            return renderError('令牌不可为空');
+        }
+        if(empty($data)){
+            return renderError('令牌已过期');
+        }
+        if(md5($data['token'])!=md5($token)){
+            return renderError('无效的token');
+        }
+        return true;
+    }
 
 }

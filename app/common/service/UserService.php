@@ -25,7 +25,10 @@ class UserService extends BaseService
      */
     public  function UserLoginService($params)
     {
-        return  $this->checkUser($params);
+        //redis
+        $result = $this->checkUser($params);
+        $this->redis->set('userInfo',$result,'7200');
+        return  renderSuccess($result);
     }
 
 
@@ -49,7 +52,7 @@ class UserService extends BaseService
         }
         $Return['token'] = TokenService::createToken();
         $Return['userInfo'] = $User;
-        return renderSuccess($Return);
+        return $Return;
     }
 
 

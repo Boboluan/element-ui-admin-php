@@ -2,6 +2,7 @@
 
 namespace app\api\route;
 
+use app\admin\middleware\Sentry;
 use app\admin\middleware\UserLogin;
 use think\facade\Route;
 
@@ -10,7 +11,7 @@ use think\facade\Route;
 Route::group('user',function ()
 {
     Route::any('info', 'admin/user/UserInfo');
-});
+})->middleware(Sentry::class);
 
 
 
